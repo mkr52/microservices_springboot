@@ -7,6 +7,8 @@ public class Money {
 
     private final BigDecimal amount;
 
+    public static final Money ZERO = new Money(BigDecimal.ZERO);
+
     public Money(BigDecimal amount) {
         this.amount = amount;
     }
@@ -32,8 +34,8 @@ public class Money {
         return this.amount !=null && money != null ? new Money(setScale(this.amount.subtract(money.getAmount()))): null;
     }
 
-    public Money multiply(BigDecimal value) {
-        return this.amount !=null && value != null ? new Money(setScale(this.amount.multiply(value))): null;
+    public Money multiply(int multiplier) {
+        return new Money(setScale(this.amount.multiply(new BigDecimal(multiplier))));
     }
 
     @Override
